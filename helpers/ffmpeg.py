@@ -10,9 +10,9 @@ async def extract_audio(client, message, data):
     await message.edit_text("Extracting Stream from file...")
 
     dwld_loc = data['location']
-    out_loc = data['location'] + ".mp3"
+    out_loc = data['location'] + ".opus"
 
-    if data['name'] == "mp3":
+    if data['name'] == "opus":
         out, err, rcode, pid = await execute(f"ffmpeg -i '{dwld_loc}' -map 0:{data['map']} -c copy '{out_loc}' -y")
         if rcode != 0:
             await message.edit_text("**Error Occured. See Logs for more info.**")
